@@ -31,18 +31,15 @@ applications:
     num_units: 1
     to:
       - "0"
-  "apache-livy":
-    charm: "/home/ubuntu/local_charms/xenial/apache-livy"
-    num_units: 1
-    to:
-      - "2"
-  "writedata-job":
+  "job-deployer":
     charm: "/home/ubuntu/local_charms/xenial/job-deployer"
+  "writedata-job":
+    charm: "/home/ubuntu/local_charms/xenial/spark-job"
     num_units: 1
     to:
       - "lxd:2"
   "transformdata-job":
-    charm: "/home/ubuntu/local_charms/xenial/job-deployer"
+    charm: "/home/ubuntu/local_charms/xenial/spark-job"
     num_units: 1
     to:
       - "lxd:2"
