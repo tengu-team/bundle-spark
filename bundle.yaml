@@ -31,18 +31,14 @@ applications:
     num_units: 1
     to:
       - "0"
-  "job-deployer":
-    charm: "/home/ubuntu/local_charms/xenial/job-deployer"
   "writedata-job":
     charm: "/home/ubuntu/local_charms/xenial/spark-job"
-    num_units: 1
-    to:
-      - "lxd:2"
+    options:
+      job_location: "https://raw.githubusercontent.com/Qrama/spark-bundle/master/jobs/writedata.py"
   "transformdata-job":
     charm: "/home/ubuntu/local_charms/xenial/spark-job"
-    num_units: 1
-    to:
-      - "lxd:2"
+    options:
+      job_location: "https://raw.githubusercontent.com/Qrama/spark-bundle/master/jobs/transformdata.py"
   "tengu-notebook":
     charm: "/home/ubuntu/local_charms/xenial/notebook-deployer"
 relations:
@@ -60,12 +56,10 @@ relations:
     - "hadoop-slave:resourcemanager"
   - - "hadoop-plugin:resourcemanager"
     - "hadoop-resourcemanager:resourcemanager"
-  - - "spark:client"
-    - "apache-livy:spark"
-  - - "apache-livy:jobdeployer"
-    - "transform-data:livy"
-  - - "apache-livy:jobdeployer"
-    - "writedata-job:livy"
+  - - "spark:juju-info"
+    - "transform-data:spark"
+  - - "spark:juju-info"
+    - "writedata-job:spark"
   - - "zeppelin:juju-info"
     - "tengu-notebook:zeppelin"
 machines:
@@ -73,8 +67,5 @@ machines:
     series: xenial
     constraints: "arch=amd64 cpu-cores=1 cpu-power=138 mem=1700 root-disk=10240"
   "1":
-    series: xenial
-    constraints: "arch=amd64 cpu-cores=1 cpu-power=138 mem=1700 root-disk=10240"
-  "2":
     series: xenial
     constraints: "arch=amd64 cpu-cores=1 cpu-power=138 mem=1700 root-disk=10240"

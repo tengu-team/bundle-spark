@@ -14,19 +14,16 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0103,c0301,c0412
-import subprocess
-import tempfile
+import requests
 from pyspark import SparkContext, SparkConf
 from pyspark.sql.functions import split
 
 conf = SparkConf().setAppName('Write Data').setMaster('local')
 sc = SparkContext(conf=conf)
 
-job_dir = '/tmp'
-subprocess.check_call(['wget', '--output-document={}/data.csv'.format(job_dir),
-                       'http://www.sharecsv.com/dl/4165c9b03d9fffdef43a3226613ff37c/Countries.csv'])
-f=open("{}/data.csv".format(job_dir)).read()
-data = sc.parallelize(f)
-data_rdd = data.map(lambda line: line.split(','))
-
-data_rdd.saveAsTextFile('/user/root/data/data2.csv')
+file = requests.get('https://data.nasa.gov/resource/y77d-th95.csv')
+data = sc.parallelize(file.text.splitlines())
+rdd = data.map(lambda x: x.encode('ascii','ignore').replace("\"", "").split(','))
+header = rdd.first()
+df = rdd.filter(lambda row : row != header).toDF(header)
+df.write.format('parquet').save('data.parquet')
