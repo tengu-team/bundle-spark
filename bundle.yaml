@@ -31,16 +31,16 @@ applications:
     num_units: 1
     to:
       - "0"
-  "writedata-job":
-    charm: "/home/ubuntu/local_charms/xenial/spark-job"
+  "writedata":
+    charm: "/home/sebastien/qrama/charms/xenial/spark-job"
     options:
       job_location: "https://raw.githubusercontent.com/Qrama/spark-bundle/master/jobs/writedata.py"
-  "transformdata-job":
-    charm: "/home/ubuntu/local_charms/xenial/spark-job"
+  "transformdata":
+    charm: "/home/sebastien/qrama/charms/xenial/spark-job"
     options:
       job_location: "https://raw.githubusercontent.com/Qrama/spark-bundle/master/jobs/transformdata.py"
   "tengu-notebook":
-    charm: "/home/ubuntu/local_charms/xenial/notebook-deployer"
+    charm: "/home/sebastien/qrama/charms/xenial/notebook"
 relations:
   - - "hadoop-namenode:datanode"
     - "hadoop-slave:namenode"
@@ -57,9 +57,9 @@ relations:
   - - "hadoop-plugin:resourcemanager"
     - "hadoop-resourcemanager:resourcemanager"
   - - "spark:juju-info"
-    - "transform-data:spark"
+    - "transformdata:spark"
   - - "spark:juju-info"
-    - "writedata-job:spark"
+    - "writedata:spark"
   - - "zeppelin:juju-info"
     - "tengu-notebook:zeppelin"
 machines:
