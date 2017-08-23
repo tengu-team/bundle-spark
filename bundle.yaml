@@ -12,18 +12,15 @@ applications:
     num_units: 1
     to:
       - "1"
-  zeppelin:
-    charm: "cs:zeppelin-28"
-    num_units: 1
+  jupyter:
+    charm: "cs:~tengu-team/jupyter-notebook-spark-2"
     expose: true
-    to:
-      - "1"
   spark:
     charm: "cs:spark-52"
     num_units: 1
     options:
       spark_bench_enabled: true
-      spark_execution_mode: "yarn-client"
+      spark_execution_mode: yarn-client
     to:
       - "0"
   "hadoop-slave":
@@ -31,16 +28,6 @@ applications:
     num_units: 1
     to:
       - "0"
-  "writedata":
-    charm: "/home/sebastien/qrama/charms/xenial/spark-job"
-    options:
-      job_location: "https://raw.githubusercontent.com/Qrama/spark-bundle/master/jobs/writedata.py"
-  "transformdata":
-    charm: "/home/sebastien/qrama/charms/xenial/spark-job"
-    options:
-      job_location: "https://raw.githubusercontent.com/Qrama/spark-bundle/master/jobs/transformdata.py"
-  "tengu-notebook":
-    charm: "/home/sebastien/qrama/charms/xenial/notebook"
 relations:
   - - "hadoop-namenode:datanode"
     - "hadoop-slave:namenode"
@@ -50,18 +37,12 @@ relations:
     - "hadoop-plugin:hadoop-plugin"
   - - "hadoop-namenode:namenode"
     - "hadoop-resourcemanager:namenode"
-  - - "zeppelin:spark"
+  - - "jupyter:spark"
     - "spark:client"
   - - "hadoop-resourcemanager:nodemanager"
     - "hadoop-slave:resourcemanager"
   - - "hadoop-plugin:resourcemanager"
     - "hadoop-resourcemanager:resourcemanager"
-  - - "spark:juju-info"
-    - "transformdata:spark"
-  - - "spark:juju-info"
-    - "writedata:spark"
-  - - "zeppelin:juju-info"
-    - "tengu-notebook:zeppelin"
 machines:
   "0":
     series: xenial

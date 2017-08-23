@@ -15,15 +15,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0103,c0301,c0412
 import requests
+import re
 from pyspark import SparkContext, SparkConf
 from pyspark.sql.functions import split
 
 conf = SparkConf().setAppName('Write Data').setMaster('local')
 sc = SparkContext(conf=conf)
 
+
 file = requests.get('https://data.nasa.gov/resource/y77d-th95.csv')
-data = sc.parallelize(file.text.splitlines())
-rdd = data.map(lambda x: x.encode('ascii','ignore').replace("\"", "").split(','))
+f = re.sub("([a-z]+),", r"\1:", file.text)
+data = sc.parallelize(f.splitlines())
+rdd = data.map(lambda x: x.encode('ascii','ignore').replace("\"","").split(","))
 header = rdd.first()
 df = rdd.filter(lambda row : row != header).toDF(header)
-df.write.format('parquet').save('data.parquet')
+df.write.format('parquet').save('raw_data.parquet')

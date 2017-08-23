@@ -16,10 +16,10 @@
 # pylint: disable=c0111,c0103,c0301,c0412
 from pyspark import SparkContext, SparkConf
 
-conf = SparkConf().setAppName('Write Data').setMaster('local')
+conf = SparkConf().setAppName('Transform Data').setMaster('local')
 sc = SparkContext(conf=conf)
 
 df = spark.read.parquet("data.parquet")
-df_ver2 = df.filter(df['nametype'] == 'Valid').select(df['id'] + df['mass'] + df['name'] + df['year'] + df['recclass'] + df['reclat'] + df['reclong']).
+df_ver2 = df.filter(df['nametype'] == 'Valid').select(df['id'], df['mass'], df['name'], df['year'], df['recclass'], df['reclat'], df['reclong'])
 
 df.write.format('parquet').save('valid_data.parquet')
