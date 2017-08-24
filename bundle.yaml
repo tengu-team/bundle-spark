@@ -12,15 +12,17 @@ applications:
     num_units: 1
     to:
       - "1"
-  jupyter:
-    charm: "cs:~tengu-team/jupyter-notebook-spark-2"
+  zeppelin:
+    charm: "cs:zeppelin-28"
     expose: true
+    num_units: 1
+    to:
+      - "0"
   spark:
     charm: "cs:spark-52"
     num_units: 1
     options:
       spark_bench_enabled: true
-      spark_execution_mode: yarn-client
     to:
       - "0"
   "hadoop-slave":
@@ -37,7 +39,7 @@ relations:
     - "hadoop-plugin:hadoop-plugin"
   - - "hadoop-namenode:namenode"
     - "hadoop-resourcemanager:namenode"
-  - - "jupyter:spark"
+  - - "zeppelin:spark"
     - "spark:client"
   - - "hadoop-resourcemanager:nodemanager"
     - "hadoop-slave:resourcemanager"

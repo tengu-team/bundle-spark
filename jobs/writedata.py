@@ -17,10 +17,13 @@
 import requests
 import re
 from pyspark import SparkContext, SparkConf
+from pyspark.sql import SQLContext, SparkSession
 from pyspark.sql.functions import split
 
-conf = SparkConf().setAppName('Write Data').setMaster('local')
+conf = SparkConf().setAppName('Write Data')
 sc = SparkContext(conf=conf)
+spark = SparkSession(sc)
+
 
 
 file = requests.get('https://data.nasa.gov/resource/y77d-th95.csv')

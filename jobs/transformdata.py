@@ -15,11 +15,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # pylint: disable=c0111,c0103,c0301,c0412
 from pyspark import SparkContext, SparkConf
+from pyspark.sql import SQLContext, SparkSession
+from pyspark.sql.functions import split
 
-conf = SparkConf().setAppName('Transform Data').setMaster('local')
+conf = SparkConf().setAppName('Write Data')
 sc = SparkContext(conf=conf)
+spark = SparkSession(sc)
 
-df = spark.read.parquet("data.parquet")
+
+df = spark.read.parquet("raw_data.parquet")
 df_ver2 = df.filter(df['nametype'] == 'Valid').select(df['id'], df['mass'], df['name'], df['year'], df['recclass'], df['reclat'], df['reclong'])
 
-df.write.format('parquet').save('valid_data.parquet')
+df.write.format('parquet').save('/user/zeppelin/valid_data.parquet')
