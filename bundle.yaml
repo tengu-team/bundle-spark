@@ -30,12 +30,20 @@ applications:
     num_units: 1
     to:
       - "0"
+  "writedata":
+    charm: "/home/sebastien/qrama/charms/xenial/spark-job"
+    options:
+      job_location: "https://raw.githubusercontent.com/Qrama/spark-bundle/master/jobs/writedata.py"
+  "transformdata":
+    charm: "/home/sebastien/qrama/charms/xenial/spark-job"
+    options:
+      job_location: "https://raw.githubusercontent.com/Qrama/spark-bundle/master/jobs/transformdata.py"
 relations:
   - - "hadoop-namenode:datanode"
     - "hadoop-slave:namenode"
   - - "hadoop-plugin:namenode"
     - "hadoop-namenode:namenode"
-  - - "spark:hadoop"
+  - - "zeppelin:hadoop"
     - "hadoop-plugin:hadoop-plugin"
   - - "hadoop-namenode:namenode"
     - "hadoop-resourcemanager:namenode"
@@ -45,6 +53,10 @@ relations:
     - "hadoop-slave:resourcemanager"
   - - "hadoop-plugin:resourcemanager"
     - "hadoop-resourcemanager:resourcemanager"
+  - - "writedata:spark"
+    - "spark:client"
+  - - "transformdata:spark"
+    - "spark:client"
 machines:
   "0":
     series: xenial
