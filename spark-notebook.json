@@ -1,0 +1,111 @@
+{
+  "paragraphs": [
+    {
+      "user": "anonymous",
+      "config": {
+        "colWidth": 12,
+        "enabled": true,
+        "results": {
+
+        },
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {
+
+        },
+        "forms": {
+
+        }
+      },
+      "apps": [
+
+      ],
+      "jobName": "paragraph_1503582622196_-1158360386",
+      "id": "20170824-135022_1493220617",
+      "dateCreated": "2017-08-24T13:50:22+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "focus": true,
+      "$$hashKey": "object:4101",
+      "text": "%pyspark\nfrom pyspark import SparkContext, SparkConf\nfrom pyspark.sql import SQLContext, SparkSession\nfrom pyspark.sql.functions import split\n\ndf = spark.read.parquet(\"/user/root/data/valid_data.parquet\")\ndf.show(5)",
+      "dateUpdated": "2017-08-24T13:52:03+0000",
+      "dateFinished": "2017-08-24T13:53:50+0000",
+      "dateStarted": "2017-08-24T13:52:36+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------------------------+---------------------------+----+--------------------+-------------------+----------------+-----------------+---------------+---+------+--------+--------+-----------+----------+-----------+--------------------+\n|:@computed_region_cbhk_fwbd|:@computed_region_nnqa_25f4|fall|         geolocation|geolocation_address|geolocation_city|geolocation_state|geolocation_zip| id|  mass|    name|nametype|   recclass|    reclat|    reclong|                year|\n+---------------------------+---------------------------+----+--------------------+-------------------+----------------+-----------------+---------------+---+------+--------+--------+-----------+----------+-----------+--------------------+\n|                           |                           |Fell|POINT (6.08333 50...|                   |                |                 |               |  1|    21|  Aachen|   Valid|         L5| 50.775000|   6.083330|1880-01-01T00:00:...|\n|                           |                           |Fell|POINT (10.23333 5...|                   |                |                 |               |  2|   720|  Aarhus|   Valid|         H6| 56.183330|  10.233330|1951-01-01T00:00:...|\n|                           |                           |Fell|POINT (-113 54.21...|                   |                |                 |               |  6|107000|    Abee|   Valid|        EH4| 54.216670|-113.000000|1952-01-01T00:00:...|\n|                           |                           |Fell|POINT (-99.9 16.8...|                   |                |                 |               | 10|  1914|Acapulco|   Valid|Acapulcoite| 16.883330| -99.900000|1976-01-01T00:00:...|\n|                           |                           |Fell|POINT (-64.95 -33...|                   |                |                 |               |370|   780| Achiras|   Valid|         L6|-33.166670| -64.950000|1902-01-01T00:00:...|\n+---------------------------+---------------------------+----+--------------------+-------------------+----------------+-----------------+---------------+---+------+--------+--------+-----------+----------+-----------+--------------------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2017-08-24T13:52:03+0000",
+      "config": {
+        "colWidth": 12,
+        "enabled": true,
+        "results": {
+
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {
+
+        },
+        "forms": {
+
+        }
+      },
+      "apps": [
+
+      ],
+      "jobName": "paragraph_1503582723094_-1151865627",
+      "id": "20170824-135203_38647936",
+      "dateCreated": "2017-08-24T13:52:03+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "focus": true,
+      "$$hashKey": "object:4178"
+    }
+  ],
+  "name": "spark-bundle",
+  "id": "2CRMZXTSP",
+  "angularObjects": {
+    "2AM1YV5CU:shared_process": [
+
+    ],
+    "2AJXGMUUJ:shared_process": [
+
+    ],
+    "2ANGGHHMQ:shared_process": [
+
+    ],
+    "2AKK3QQXU:shared_process": [
+
+    ],
+    "2B44YVSN1:shared_process": [
+
+    ]
+  },
+  "config": {
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {
+
+  }
+}

@@ -25,4 +25,4 @@ spark = SparkSession(sc)
 df = spark.read.parquet("raw_data.parquet")
 df_ver2 = df.filter(df['nametype'] == 'Valid').select(df['id'], df['mass'], df['name'], df['year'], df['recclass'], df['reclat'], df['reclong'])
 
-df.write.format('parquet').save('/user/root/data/valid_data.parquet')
+df_ver2.write.format('parquet').save('/user/root/data/valid_data.parquet')
