@@ -21,6 +21,8 @@ The bundle contains the following services:
     - 1 hadoop slave
     
 #### Zeppelin
+![notebook](https://github.com/Qrama/spark-bundle/blob/master/notebook.png?raw=true)
+
 - Zeppelin Notebook has a relation with spark and Hadoop. There is 1 Notebook available that will retrieve data from your hdfs and makes it possible to query the data. The notebook is called `Tengu-notebook`
 - => Zeppelin can be accessed on `http://url:9080`
 
