@@ -16,7 +16,7 @@
 # pylint: disable=c0111,c0103,c0301,c0412
 from pyspark import SparkContext, SparkConf
 from pyspark.sql import SQLContext, SparkSession
-from pyspark.sql.functions import split
+from pyspark.sql.functions import split, to_date
 
 conf = SparkConf().setAppName('Transform Data')
 sc = SparkContext(conf=conf)
@@ -24,5 +24,6 @@ spark = SparkSession(sc)
 
 df = spark.read.parquet("raw_data.parquet")
 df_ver2 = df.filter(df['nametype'] == 'Valid').select(df['id'], df['mass'], df['name'], df['year'], df['recclass'], df['reclat'], df['reclong'])
+valdf = df_ver2.withColumn('year', to_date(df_ver2['year'].substr(0, 4)))
 
-df_ver2.write.format('parquet').save('/user/root/data/valid_data.parquet')
+valdf.write.format('parquet').save('/user/root/data/valid_data.parquet')
