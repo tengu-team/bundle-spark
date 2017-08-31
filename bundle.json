@@ -1,0 +1,118 @@
+
+{
+	"series": "xenial",
+	"services": {
+		"hadoop-plugin": {
+			"charm": "cs:hadoop-plugin-27"
+		},
+    "getdata": {
+  			"charm": "/home/ubuntu/local_charms/xenial/spark-job",
+        "options": {
+  				"job_location": "https://raw.githubusercontent.com/Qrama/spark-bundle/master/jobs/writedata.py"
+  			}
+  		},
+    "validatedata": {
+    			"charm": "/home/ubuntu/local_charms/xenial/spark-job",
+          "options": {
+    				"job_location": "https://raw.githubusercontent.com/Qrama/spark-bundle/master/jobs/transformdata.py"
+    			}
+    		},
+    "tengu-notebook": {
+			"charm": "/home/ubuntu/local_charms/xenial/notebook",
+      "options": {
+        "notebook_location": "https://raw.githubusercontent.com/Qrama/spark-bundle/master/spark-notebook.json"
+      }
+		},
+		"hadoop-resourcemanager": {
+			"charm": "cs:hadoop-resourcemanager-29",
+			"num_units": 1,
+			"to": [
+				"1"
+			]
+		},
+		"hadoop-namenode": {
+			"charm": "cs:hadoop-namenode-27",
+			"num_units": 1,
+			"to": [
+				"1"
+			]
+		},
+		"zeppelin": {
+			"charm": "cs:zeppelin-28",
+			"num_units": 1,
+			"expose": true,
+			"to": [
+				"0"
+			]
+		},
+		"spark": {
+			"charm": "cs:spark-52",
+			"num_units": 1,
+			"options": {
+				"spark_bench_enabled": true
+			},
+			"to": [
+				"0"
+			]
+		},
+		"hadoop-slave": {
+			"charm": "cs:hadoop-slave-15",
+			"num_units": 1,
+			"to": [
+				"0"
+			]
+		}
+	},
+	"relations": [
+		[
+			"hadoop-namenode:datanode",
+			"hadoop-slave:namenode"
+		],
+		[
+			"hadoop-plugin:namenode",
+			"hadoop-namenode:namenode"
+		],
+		[
+			"zeppelin:hadoop",
+			"hadoop-plugin:hadoop-plugin"
+		],
+		[
+			"hadoop-namenode:namenode",
+			"hadoop-resourcemanager:namenode"
+		],
+		[
+			"zeppelin:spark",
+			"spark:client"
+		],
+		[
+			"hadoop-resourcemanager:nodemanager",
+			"hadoop-slave:resourcemanager"
+		],
+		[
+			"hadoop-plugin:resourcemanager",
+			"hadoop-resourcemanager:resourcemanager"
+		],
+    [
+      "getdata:spark"
+      "spark:client"
+    ],
+    [
+      "validatedata:spark"
+      "spark:client"
+    ],
+    [
+      "tengu-notebook:zeppelin"
+      "zeppelin:juju-info"
+    ]
+	],
+	"machines": {
+		"0": {
+			"series": "xenial",
+			"constraints": "arch=amd64 cpu-cores=1 cpu-power=138 mem=1700 root-disk=10240"
+		},
+		"1": {
+			"series": "xenial",
+			"constraints": "arch=amd64 cpu-cores=1 cpu-power=138 mem=1700 root-disk=10240"
+		}
+	}
+}
