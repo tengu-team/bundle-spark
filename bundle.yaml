@@ -31,15 +31,15 @@ applications:
     to:
       - "0"
   "getdata":
-    charm: "/home/sebastien/qrama/charms/xenial/spark-job"
+    charm: "/home/ubuntu/qrama-charms/xenial/spark-job"
     options:
       job_location: "https://raw.githubusercontent.com/Qrama/spark-bundle/master/jobs/writedata.py"
   "validatedata":
-    charm: "/home/sebastien/qrama/charms/xenial/spark-job"
+    charm: "/home/ubuntu/qrama-charms/xenial/spark-job"
     options:
       job_location: "https://raw.githubusercontent.com/Qrama/spark-bundle/master/jobs/transformdata.py"
   "tengu-notebook":
-    charm: "/home/sebastien/qrama/charms/xenial/notebook"
+    charm: "/home/ubuntu/qrama-charms/xenial/notebook"
     options:
       notebook_location: "https://raw.githubusercontent.com/Qrama/spark-bundle/master/spark-notebook.json"
 relations:
