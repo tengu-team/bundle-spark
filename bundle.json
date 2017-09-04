@@ -3,7 +3,7 @@
 	"series": "xenial",
 	"services": {
 		"hadoop-plugin": {
-			"charm": "cs:hadoop-plugin-27"
+			"charm": "cs:hadoop-plugin-31"
 		},
     "getdata": {
   			"charm": "/home/ubuntu/local_charms/xenial/spark-job",
@@ -24,21 +24,21 @@
       }
 		},
 		"hadoop-resourcemanager": {
-			"charm": "cs:hadoop-resourcemanager-29",
+			"charm": "cs:hadoop-resourcemanager-33",
 			"num_units": 1,
 			"to": [
 				"1"
 			]
 		},
 		"hadoop-namenode": {
-			"charm": "cs:hadoop-namenode-27",
+			"charm": "cs:hadoop-namenode-31",
 			"num_units": 1,
 			"to": [
 				"1"
 			]
 		},
 		"zeppelin": {
-			"charm": "cs:zeppelin-28",
+			"charm": "cs:zeppelin-32",
 			"num_units": 1,
 			"expose": true,
 			"to": [
@@ -46,7 +46,7 @@
 			]
 		},
 		"spark": {
-			"charm": "cs:spark-52",
+			"charm": "cs:spark-56",
 			"num_units": 1,
 			"options": {
 				"spark_bench_enabled": true
@@ -56,7 +56,7 @@
 			]
 		},
 		"hadoop-slave": {
-			"charm": "cs:hadoop-slave-15",
+			"charm": "cs:hadoop-slave-32",
 			"num_units": 1,
 			"to": [
 				"0"

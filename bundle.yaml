@@ -1,32 +1,32 @@
 series: xenial
 applications:
   "hadoop-plugin":
-    charm: "cs:hadoop-plugin-27"
+    charm: "cs:hadoop-plugin-31"
   "hadoop-resourcemanager":
-    charm: "cs:hadoop-resourcemanager-29"
+    charm: "cs:hadoop-resourcemanager-33"
     num_units: 1
     to:
       - "1"
   "hadoop-namenode":
-    charm: "cs:hadoop-namenode-27"
+    charm: "cs:hadoop-namenode-31"
     num_units: 1
     to:
       - "1"
   zeppelin:
-    charm: "cs:zeppelin-28"
+    charm: "cs:zeppelin-32"
     expose: true
     num_units: 1
     to:
       - "0"
   spark:
-    charm: "cs:spark-52"
+    charm: "cs:spark-56"
     num_units: 1
     options:
       spark_bench_enabled: true
     to:
       - "0"
   "hadoop-slave":
-    charm: "cs:hadoop-slave-28"
+    charm: "cs:hadoop-slave-32"
     num_units: 1
     to:
       - "0"
