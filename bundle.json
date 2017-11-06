@@ -8,19 +8,19 @@
     "getdata": {
   			"charm": "/home/ubuntu/qrama-charms/xenial/spark-job",
         "options": {
-  				"job_location": "https://raw.githubusercontent.com/Qrama/spark-bundle/master/jobs/writedata.py"
+  				"job_location": "https://raw.githubusercontent.com/tengu-team/bundle-spark/master/jobs/writedata.py"
   			}
   		},
     "validatedata": {
     			"charm": "/home/ubuntu/qrama-charms/xenial/spark-job",
           "options": {
-    				"job_location": "https://raw.githubusercontent.com/Qrama/spark-bundle/master/jobs/transformdata.py"
+    				"job_location": "https://raw.githubusercontent.com/tengu-team/bundle-spark/master/jobs/transformdata.py"
     			}
     		},
     "tengu-notebook": {
 			"charm": "/home/ubuntu/qrama-charms/xenial/notebook",
       "options": {
-        "notebook_location": "https://raw.githubusercontent.com/Qrama/spark-bundle/master/spark-notebook.json"
+        "notebook_location": "https://raw.githubusercontent.com/tengu-team/bundle-spark/master/spark-notebook.json"
       }
 		},
 		"hadoop-resourcemanager": {
