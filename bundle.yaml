@@ -39,7 +39,7 @@ applications:
     options:
       job_location: "https://raw.githubusercontent.com/tengu-team/bundle-spark/master/jobs/transformdata.py"
   "tengu-notebook":
-    charm: "cs:~tengu-team/notebook-0"
+    charm: "cs:~tengu-team/notebook-1"
     options:
       notebook_location: "https://raw.githubusercontent.com/tengu-team/bundle-spark/master/spark-notebook.json"
 relations:
