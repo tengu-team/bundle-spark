@@ -1,0 +1,5 @@
+{
+  "name"    : "Spark Zeppelin ",
+  "summary" : "This Workspace contains Spark, Hadoop and Zeppelin. There are predfined notebooks available in the Zeppelin Interface or you can create your own Notebooks.",
+  "tags"    : ["Big Data", "analytics"]
+}
