@@ -1,5 +1,5 @@
 {
-  "name"    : "Spark Zeppelin ",
-  "summary" : "This Workspace contains Spark, Hadoop and Zeppelin. There are predfined notebooks available in the Zeppelin Interface or you can create your own Notebooks.",
+  "name"    : "Automate Spark Jobs",
+  "summary" : "Deploy a small Spark cluster together with exemplary Python Spark Jobs and an integrated Zeppelin Notebook to ease into big data processing.",
   "tags"    : ["Big Data", "analytics"]
 }
