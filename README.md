@@ -9,8 +9,8 @@ The bundle contains the following services:
 #### Spark
 
 - Spark is running with 2 spark jobs
-  - ![getdata](https://github.com/Qrama/spark-bundle/blob/master/jobs/writedata.py)
-  - ![validatedata](https://github.com/Qrama/spark-bundle/blob/master/jobs/transformdata.py)
+  - [getdata](https://github.com/Qrama/spark-bundle/blob/master/jobs/writedata.py)
+  - [validatedata](https://github.com/Qrama/spark-bundle/blob/master/jobs/transformdata.py)
 - => SparkUI can be accessed on `http://url:4040`
 
 #### Hadoop
